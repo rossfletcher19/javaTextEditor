@@ -27,12 +27,15 @@ import javafx.stage.Stage;
 public class Control extends Application implements EventHandler {
     
     String selectedText = new String();
+    //headings variables
     String h1 = "h1";
     String h2 = "h2";
     String h3 = "h3";
     String h4 = "h4";
     String h5 = "h5";
     String h6 = "h6";
+    // text effects varibales
+    String strong = "*";
    
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -44,10 +47,13 @@ public class Control extends Application implements EventHandler {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    // HEADINGS
+    // HEADINGS Methods
     public Hyperlink createNewH1Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setText(h1);
+        String biggestHeading = ". Biggest heading";
+       Link.setStyle("-fx-font: normal bold 24px 'serif' ");
+        
+        Link.setText(h1 + biggestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -60,7 +66,9 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH2Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setText(h2);
+        Link.setStyle("-fx-font: normal bold 20px 'serif' ");
+        String biggerHeading = ". Bigger heading";
+        Link.setText(h2+biggerHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -123,6 +131,19 @@ public class Control extends Application implements EventHandler {
         return Link;
     }
     
+    public Hyperlink createNewStrongLink(final TextArea textArea) {
+        Hyperlink Link = new Hyperlink();
+        Link.setText("strong");
+        Link.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                selectedText = textArea.getSelectedText(); 
+                textArea.replaceSelection(strong + selectedText + strong);
+            }
+        });
+        return Link;
+    }
+    
     
     
     public Button createSaveButton(final TextArea textArea, final Stage primaryStage){
@@ -138,7 +159,6 @@ public class Control extends Application implements EventHandler {
                 FileChooser.ExtensionFilter extFilter = 
                 new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
                 fileChooser.getExtensionFilters().add(extFilter);
-                
                 File file = fileChooser.showSaveDialog(primaryStage);
              
                 if(file != null){

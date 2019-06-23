@@ -43,7 +43,7 @@ public class View {
         return hbox;
     }
     
-    private VBox addVBox() {
+    private VBox addHeadingsVBox() {
         
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10)); // Set all sides to 10
@@ -54,6 +54,17 @@ public class View {
         vbox.getChildren().add(control.createNewH4Link(textArea));
         vbox.getChildren().add(control.createNewH5Link(textArea));
         vbox.getChildren().add(control.createNewH6Link(textArea));
+       
+        
+        return vbox;
+    }
+    
+    private VBox addTextEffectsVBox() {
+        
+        VBox vbox = new VBox();
+        vbox.setPadding(new Insets(10)); // Set all sides to 10
+        vbox.setSpacing(0);              // Gap between nodes
+        vbox.getChildren().add(control.createNewStrongLink(textArea));
         
         return vbox;
     }
@@ -88,7 +99,7 @@ public class View {
     public GridPane addSideBarGridPane(Stage primaryStage) {
         GridPane grid = new GridPane();
         grid.setHgap(10);
-        grid.setVgap(10);
+//        grid.setVgap(0);
         grid.setPadding(new Insets(10, 10, 0, 10));
         // Category in column 2, row 1
         Text category = new Text("formatting");
@@ -96,14 +107,21 @@ public class View {
         grid.add(category, 0, 0);
         
         final Accordion headingsAccordion = new Accordion ();
-        final TitledPane h1TitlePane = new TitledPane();
-        h1TitlePane.setText("Headings");
-        h1TitlePane.setContent(addVBox());
-        headingsAccordion.getPanes().addAll(h1TitlePane);
-        grid.add(headingsAccordion, 0, 1); 
+        final TitledPane headingsTitlePane = new TitledPane();
+        headingsTitlePane.setText("Headings");
+        headingsTitlePane.setContent(addHeadingsVBox());
+        headingsAccordion.getPanes().addAll(headingsTitlePane);
+        grid.add(headingsAccordion, 0, 1);
+        
+        final Accordion textEffectsAccordion = new Accordion ();
+        final TitledPane textEffectsTitlePane = new TitledPane();
+        textEffectsTitlePane.setText("Text Effects");
+        textEffectsTitlePane.setContent(addTextEffectsVBox());
+        textEffectsAccordion.getPanes().addAll(textEffectsTitlePane);
+        grid.add(textEffectsAccordion, 0, 2);
         
         // Save Button in column 1 (bottom), row 3
-        grid.add(control.createSaveButton(textArea, primaryStage), 0, 2); 
+        grid.add(control.createSaveButton(textArea, primaryStage), 0, 3); 
 
         // Right label in column 4 (top), row 3
         Text servicesPercent = new Text("gridcorner");
@@ -114,8 +132,6 @@ public class View {
     
     
        public Scene createScene(Stage primaryStage) {
-        
-      
         BorderPane border = new BorderPane();
         HBox hbox = addHBox();
         border.setTop(hbox);
