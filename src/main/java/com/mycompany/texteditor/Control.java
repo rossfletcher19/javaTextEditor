@@ -5,11 +5,19 @@
  */
 package com.mycompany.texteditor;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -18,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 /**
@@ -59,8 +68,10 @@ public class Control extends Application implements EventHandler {
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
                 textArea.replaceSelection(h1 + ". " + selectedText);
+                
             }
         });
+        
         return Link;
     }
     
@@ -81,7 +92,9 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH3Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setText(h3);
+        Link.setStyle("-fx-font: normal bold 16px 'serif' ");
+        String bigHeading = ". Big heading";
+        Link.setText(h3 + bigHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -94,7 +107,9 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH4Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setText(h4);
+        Link.setStyle("-fx-font: normal bold 14px 'serif' ");
+        String normalHeading = ". Normal heading";
+        Link.setText(h4 + normalHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -146,18 +161,17 @@ public class Control extends Application implements EventHandler {
     
     
     
-    public Button createSaveButton(final TextArea textArea, final Stage primaryStage){
+    public Button createSaveAsButton(final TextArea textArea, final Stage primaryStage){
         
         Button button = new Button();
-        button.setText("save");
+        button.setText("save as");
         
         button.setOnAction(new EventHandler<ActionEvent>() {
  
             @Override
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
-                FileChooser.ExtensionFilter extFilter = 
-                new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
                 fileChooser.getExtensionFilters().add(extFilter);
                 File file = fileChooser.showSaveDialog(primaryStage);
              
@@ -165,6 +179,66 @@ public class Control extends Application implements EventHandler {
                     
                     SaveFile(textArea.getText().replaceAll("\n", System.getProperty("line.separator")), file);
                 } 
+            }
+        });
+       return button;
+    
+    }
+    
+    public Button createSaveButton(final TextArea textArea, final Stage primaryStage){
+        
+        Button button = new Button();
+        button.setText("save");
+       
+        
+        button.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                
+                
+                FileChooser fileChooser = new FileChooser();
+                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+                fileChooser.getExtensionFilters().add(extFilter);
+                File file = fileChooser.showSaveDialog(primaryStage);
+                
+                
+                if(file != null){
+                    
+                    SaveFile(textArea.getText().replaceAll("\n", System.getProperty("line.separator")), file);
+                } 
+            }
+        });
+       return button;
+    
+    }
+    
+     public Button createOpenButton(final TextArea textArea, final Stage primaryStage){
+        
+        Button button = new Button();
+        button.setText("open");
+        FileReader fileReader;
+        
+        button.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                
+                
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.getExtensionFilters().addAll(
+                        new ExtensionFilter("Text Files", "*.txt"));
+//                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+//                fileChooser.getExtensionFilters().add(extFilter);
+                File selectedFile = fileChooser.showOpenDialog(primaryStage);
+                if (selectedFile != null) {
+                 OpenFile(textArea, selectedFile);
+ }
+                
+//                if(file != null){
+//                    
+//                    SaveFile(textArea.getText().replaceAll("\n", System.getProperty("line.separator")), file);
+//                } 
             }
         });
        return button;
@@ -181,6 +255,55 @@ public class Control extends Application implements EventHandler {
             Logger.getLogger(Control.class
                 .getName()).log(Level.SEVERE, null, ex);
         }
+          
+    }
+    
+    // kinda working
+//    private void OpenFile(TextArea textArea, File file){
+//        try {
+//            
+//            FileReader filereader;
+//            filereader = new FileReader(file);
+//            
+//            BufferedReader reader = new BufferedReader(filereader);
+//            String string;
+//            string = reader.lines().collect(Collectors.joining());
+//            
+//            System.out.print(string);
+//            
+//            textArea.setText(string);
+//            filereader.close();
+//            
+//        } catch (IOException ex) {
+//            Logger.getLogger(Control.class
+//                .getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        
+//          
+//    }
+    
+    private void OpenFile(TextArea textArea, File file){
+        
+        try {
+            
+            FileReader filereader;
+            filereader = new FileReader(file);
+            int i; 
+            String targetString = "";
+            while ((i=filereader.read()) != -1) {
+                targetString += (char) i;
+            }
+
+            textArea.setText(targetString);
+            filereader.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Control.class
+                .getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
           
     }
     

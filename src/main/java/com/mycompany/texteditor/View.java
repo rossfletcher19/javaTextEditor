@@ -27,6 +27,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
 /**
  *
  * @author rtbfl
@@ -34,6 +35,7 @@ import javafx.stage.Stage;
 public class View {
     TextArea textArea = new TextArea();
     Control control = new Control();
+    
     
     public HBox addHBox() {
         HBox hbox = new HBox();
@@ -107,6 +109,7 @@ public class View {
         grid.add(category, 0, 0);
         
         final Accordion headingsAccordion = new Accordion ();
+       
         final TitledPane headingsTitlePane = new TitledPane();
         headingsTitlePane.setText("Headings");
         headingsTitlePane.setContent(addHeadingsVBox());
@@ -121,7 +124,10 @@ public class View {
         grid.add(textEffectsAccordion, 0, 2);
         
         // Save Button in column 1 (bottom), row 3
+        
         grid.add(control.createSaveButton(textArea, primaryStage), 0, 3); 
+        grid.add(control.createSaveAsButton(textArea, primaryStage), 0, 4);
+        grid.add(control.createOpenButton(textArea, primaryStage),0,5);
 
         // Right label in column 4 (top), row 3
         Text servicesPercent = new Text("gridcorner");
@@ -137,6 +143,7 @@ public class View {
         border.setTop(hbox);
         border.setLeft(addSideBarGridPane(primaryStage));
         addStackPane(hbox);
+        textArea.setWrapText(true);
         border.setCenter(textArea);
         Scene scene = new Scene(border);
         return scene;
