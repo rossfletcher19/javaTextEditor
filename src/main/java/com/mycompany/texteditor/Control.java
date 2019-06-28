@@ -5,19 +5,13 @@
  */
 package com.mycompany.texteditor;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -59,25 +53,22 @@ public class Control extends Application implements EventHandler {
     // HEADINGS Methods
     public Hyperlink createNewH1Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
+        Link.setStyle("-fx-font: bold 24px 'serif' ");
         String biggestHeading = ". Biggest heading";
-       Link.setStyle("-fx-font: normal bold 24px 'serif' ");
-        
         Link.setText(h1 + biggestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
                 textArea.replaceSelection(h1 + ". " + selectedText);
-                
             }
         });
-        
         return Link;
     }
     
     public Hyperlink createNewH2Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: normal bold 20px 'serif' ");
+        Link.setStyle("-fx-font: bold 20px 'serif' ");
         String biggerHeading = ". Bigger heading";
         Link.setText(h2+biggerHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
@@ -92,7 +83,7 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH3Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: normal bold 16px 'serif' ");
+        Link.setStyle("-fx-font: bold 16px 'serif' ");
         String bigHeading = ". Big heading";
         Link.setText(h3 + bigHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
@@ -107,7 +98,7 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH4Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: normal bold 14px 'serif' ");
+        Link.setStyle("-fx-font: bold 14px 'serif' ");
         String normalHeading = ". Normal heading";
         Link.setText(h4 + normalHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
@@ -122,7 +113,9 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH5Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setText(h5);
+        Link.setStyle("-fx-font: bold 12px 'serif' ");
+        String smallHeading = ". Small heading";
+        Link.setText(h5 + smallHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -135,7 +128,9 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH6Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setText(h6);
+        Link.setStyle("-fx-font: 12px 'serif' ");
+        String smallestHeading = ". Smallest heading";
+        Link.setText(h6 + smallestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -217,7 +212,6 @@ public class Control extends Application implements EventHandler {
         
         Button button = new Button();
         button.setText("open");
-        FileReader fileReader;
         
         button.setOnAction(new EventHandler<ActionEvent>() {
  
@@ -228,17 +222,13 @@ public class Control extends Application implements EventHandler {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.getExtensionFilters().addAll(
                         new ExtensionFilter("Text Files", "*.txt"));
-//                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-//                fileChooser.getExtensionFilters().add(extFilter);
+                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+                fileChooser.getExtensionFilters().add(extFilter);
                 File selectedFile = fileChooser.showOpenDialog(primaryStage);
                 if (selectedFile != null) {
                  OpenFile(textArea, selectedFile);
- }
+                 }
                 
-//                if(file != null){
-//                    
-//                    SaveFile(textArea.getText().replaceAll("\n", System.getProperty("line.separator")), file);
-//                } 
             }
         });
        return button;

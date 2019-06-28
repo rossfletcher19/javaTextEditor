@@ -123,15 +123,12 @@ public class View {
         textEffectsAccordion.getPanes().addAll(textEffectsTitlePane);
         grid.add(textEffectsAccordion, 0, 2);
         
-        // Save Button in column 1 (bottom), row 3
+        // Save/Open Buttons in column 0 (bottom)
         
         grid.add(control.createSaveButton(textArea, primaryStage), 0, 3); 
         grid.add(control.createSaveAsButton(textArea, primaryStage), 0, 4);
         grid.add(control.createOpenButton(textArea, primaryStage),0,5);
 
-        // Right label in column 4 (top), row 3
-        Text servicesPercent = new Text("gridcorner");
-        grid.add(servicesPercent, 3, 2);
         grid.setGridLinesVisible(true);
         return grid;
     }
