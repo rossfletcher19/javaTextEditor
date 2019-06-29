@@ -31,14 +31,22 @@ public class Control extends Application implements EventHandler {
     
     String selectedText = new String();
     //headings variables
-    String h1 = "h1";
-    String h2 = "h2";
-    String h3 = "h3";
-    String h4 = "h4";
-    String h5 = "h5";
-    String h6 = "h6";
+    String h1 = "h1. ";
+    String h2 = "h2. ";
+    String h3 = "h3. ";
+    String h4 = "h4. ";
+    String h5 = "h5. ";
+    String h6 = "h6. ";
     // text effects varibales
     String strong = "*";
+    String emphasis = "_";
+    String citation = "??";
+    String deleted = "-";
+    String inserted = "+";
+    String superscript = "^";
+    String subscript = "~";
+    String monospaced = "{{";
+    String blockquote = "bq. ";
    
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -54,13 +62,13 @@ public class Control extends Application implements EventHandler {
     public Hyperlink createNewH1Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
         Link.setStyle("-fx-font: bold 24px 'serif' ");
-        String biggestHeading = ". Biggest heading";
+        String biggestHeading = "Biggest heading";
         Link.setText(h1 + biggestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h1 + ". " + selectedText);
+                textArea.replaceSelection(h1 + selectedText);
             }
         });
         return Link;
@@ -69,13 +77,13 @@ public class Control extends Application implements EventHandler {
     public Hyperlink createNewH2Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
         Link.setStyle("-fx-font: bold 20px 'serif' ");
-        String biggerHeading = ". Bigger heading";
+        String biggerHeading = "Bigger heading";
         Link.setText(h2+biggerHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h2 + ". " + selectedText);
+                textArea.replaceSelection(h2 + selectedText);
             }
         });
         return Link;
@@ -84,13 +92,13 @@ public class Control extends Application implements EventHandler {
     public Hyperlink createNewH3Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
         Link.setStyle("-fx-font: bold 16px 'serif' ");
-        String bigHeading = ". Big heading";
+        String bigHeading = "Big heading";
         Link.setText(h3 + bigHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h3 + ". " + selectedText);
+                textArea.replaceSelection(h3 + selectedText);
             }
         });
         return Link;
@@ -99,13 +107,13 @@ public class Control extends Application implements EventHandler {
     public Hyperlink createNewH4Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
         Link.setStyle("-fx-font: bold 14px 'serif' ");
-        String normalHeading = ". Normal heading";
+        String normalHeading = "Normal heading";
         Link.setText(h4 + normalHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h4 + ". " + selectedText);
+                textArea.replaceSelection(h4 + selectedText);
             }
         });
         return Link;
@@ -114,13 +122,13 @@ public class Control extends Application implements EventHandler {
     public Hyperlink createNewH5Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
         Link.setStyle("-fx-font: bold 12px 'serif' ");
-        String smallHeading = ". Small heading";
+        String smallHeading = "Small heading";
         Link.setText(h5 + smallHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h5 + ". " + selectedText);
+                textArea.replaceSelection(h5 + selectedText);
             }
         });
         return Link;
@@ -129,13 +137,13 @@ public class Control extends Application implements EventHandler {
     public Hyperlink createNewH6Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
         Link.setStyle("-fx-font: 12px 'serif' ");
-        String smallestHeading = ". Smallest heading";
+        String smallestHeading = "Smallest heading";
         Link.setText(h6 + smallestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h6 + ". " + selectedText);
+                textArea.replaceSelection(h6 + selectedText);
             }
         });
         return Link;
@@ -247,31 +255,6 @@ public class Control extends Application implements EventHandler {
         }
           
     }
-    
-    // kinda working
-//    private void OpenFile(TextArea textArea, File file){
-//        try {
-//            
-//            FileReader filereader;
-//            filereader = new FileReader(file);
-//            
-//            BufferedReader reader = new BufferedReader(filereader);
-//            String string;
-//            string = reader.lines().collect(Collectors.joining());
-//            
-//            System.out.print(string);
-//            
-//            textArea.setText(string);
-//            filereader.close();
-//            
-//        } catch (IOException ex) {
-//            Logger.getLogger(Control.class
-//                .getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        
-//          
-//    }
     
     private void OpenFile(TextArea textArea, File file){
         

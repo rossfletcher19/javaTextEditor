@@ -129,7 +129,7 @@ public class View {
         grid.add(control.createSaveAsButton(textArea, primaryStage), 0, 4);
         grid.add(control.createOpenButton(textArea, primaryStage),0,5);
 
-        grid.setGridLinesVisible(true);
+//        grid.setGridLinesVisible(true);
         return grid;
     }
     
