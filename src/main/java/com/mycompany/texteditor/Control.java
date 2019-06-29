@@ -31,22 +31,9 @@ public class Control extends Application implements EventHandler {
     
     String selectedText = new String();
     //headings variables
-    String h1 = "h1. ";
-    String h2 = "h2. ";
-    String h3 = "h3. ";
-    String h4 = "h4. ";
-    String h5 = "h5. ";
-    String h6 = "h6. ";
+    String[] headings = {"h1. ","h2. ","h3. ","h4. ","h5. ","h6. "};
     // text effects varibales
-    String strong = "*";
-    String emphasis = "_";
-    String citation = "??";
-    String deleted = "-";
-    String inserted = "+";
-    String superscript = "^";
-    String subscript = "~";
-    String monospaced = "{{";
-    String blockquote = "bq. ";
+    String[] effects = {"*","_","??","-","+","^","~","{{","bq. "};
    
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -64,12 +51,12 @@ public class Control extends Application implements EventHandler {
     Button button = new Button();
     button.getStyleClass().add("button");
     String biggestHeading = "Biggest heading";
-    button.setText(h1 + biggestHeading);
+    button.setText(headings[0] + biggestHeading);
     button.setOnAction(new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent event) {
             selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h1 + selectedText);
+                textArea.replaceSelection(headings[0] + selectedText);
         }
     });
     
@@ -84,13 +71,13 @@ public class Control extends Application implements EventHandler {
         Link.getStyleClass().add("hyperlinkHnC");
         
         String biggestHeading = "Biggest heading";
-        Link.setText(h1 + biggestHeading);
+        Link.setText(headings[0] + biggestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h1 + selectedText);
+                textArea.replaceSelection(headings[0] + selectedText);
                 
             }
         });
@@ -103,12 +90,12 @@ public class Control extends Application implements EventHandler {
         Link.getStyleClass().add("hyperlinkHnC");
 //        Link.setStyle("-fx-font: bold 20px 'serif' ");
         String biggerHeading = "Bigger heading";
-        Link.setText(h2+biggerHeading);
+        Link.setText(headings[1]+biggerHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h2 + selectedText);
+                textArea.replaceSelection(headings[1] + selectedText);
             }
         });
         return Link;
@@ -119,12 +106,12 @@ public class Control extends Application implements EventHandler {
         Link.getStyleClass().add("hyperlinkH3");
         Link.getStyleClass().add("hyperlinkHnC");
         String bigHeading = "Big heading";
-        Link.setText(h3 + bigHeading);
+        Link.setText(headings[2] + bigHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h3 + selectedText);
+                textArea.replaceSelection(headings[2] + selectedText);
             }
         });
         return Link;
@@ -135,12 +122,12 @@ public class Control extends Application implements EventHandler {
         Link.getStyleClass().add("hyperlinkH4");
         Link.getStyleClass().add("hyperlinkHnC");
         String normalHeading = "Normal heading";
-        Link.setText(h4 + normalHeading);
+        Link.setText(headings[3] + normalHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h4 + selectedText);
+                textArea.replaceSelection(headings[3] + selectedText);
             }
         });
         return Link;
@@ -151,12 +138,12 @@ public class Control extends Application implements EventHandler {
         Link.getStyleClass().add("hyperlinkH5");
         Link.getStyleClass().add("hyperlinkHnC");
         String smallHeading = "Small heading";
-        Link.setText(h5 + smallHeading);
+        Link.setText(headings[4] + smallHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h5 + selectedText);
+                textArea.replaceSelection(headings[4] + selectedText);
             }
         });
         return Link;
@@ -167,12 +154,12 @@ public class Control extends Application implements EventHandler {
         Link.getStyleClass().add("hyperlinkH6");
         Link.getStyleClass().add("hyperlinkHnC");
         String smallestHeading = "Smallest heading";
-        Link.setText(h6 + smallestHeading);
+        Link.setText(headings[5] + smallestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(h6 + selectedText);
+                textArea.replaceSelection(headings[5] + selectedText);
             }
         });
         return Link;
@@ -186,7 +173,7 @@ public class Control extends Application implements EventHandler {
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
-                textArea.replaceSelection(strong + selectedText + strong);
+                textArea.replaceSelection(effects[0] + selectedText + effects[0]);
             }
         });
         return Link;
