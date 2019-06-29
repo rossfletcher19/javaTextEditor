@@ -5,6 +5,7 @@
  */
 package com.mycompany.texteditor;
 
+import java.io.File;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -50,6 +51,8 @@ public class View {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10)); // Set all sides to 10
         vbox.setSpacing(0);              // Gap between nodes
+        
+//        vbox.getChildren().add(control.createNewH1Button(textArea));
         vbox.getChildren().add(control.createNewH1Link(textArea));
         vbox.getChildren().add(control.createNewH2Link(textArea));
         vbox.getChildren().add(control.createNewH3Link(textArea));

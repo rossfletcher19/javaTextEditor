@@ -1,6 +1,7 @@
 package com.mycompany.texteditor;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -21,7 +22,10 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setHeight(600);
         primaryStage.setWidth(1000);
-        primaryStage.setScene(view.createScene(primaryStage));
+        
+        Scene scene = view.createScene(primaryStage);
+        scene.getStylesheets().add("styles/Styles.css");
+        primaryStage.setScene(scene);
         primaryStage.setTitle("textEditor");
         primaryStage.show();
         

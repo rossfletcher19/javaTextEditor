@@ -59,16 +59,39 @@ public class Control extends Application implements EventHandler {
     }
     
     // HEADINGS Methods
+    
+    public Button createNewH1Button(final TextArea textArea){
+    Button button = new Button();
+    button.getStyleClass().add("button");
+    String biggestHeading = "Biggest heading";
+    button.setText(h1 + biggestHeading);
+    button.setOnAction(new EventHandler<ActionEvent>(){
+        @Override
+        public void handle(ActionEvent event) {
+            selectedText = textArea.getSelectedText(); 
+                textArea.replaceSelection(h1 + selectedText);
+        }
+    });
+    
+    return button;
+    }
+    
+    
     public Hyperlink createNewH1Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: bold 24px 'serif' ");
+        
+        Link.getStyleClass().add("hyperlinkH1");
+        Link.getStyleClass().add("hyperlinkHnC");
+        
         String biggestHeading = "Biggest heading";
         Link.setText(h1 + biggestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
+            
             @Override
             public void handle(ActionEvent e) {
                 selectedText = textArea.getSelectedText(); 
                 textArea.replaceSelection(h1 + selectedText);
+                
             }
         });
         return Link;
@@ -76,7 +99,9 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH2Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: bold 20px 'serif' ");
+        Link.getStyleClass().add("hyperlinkH2");
+        Link.getStyleClass().add("hyperlinkHnC");
+//        Link.setStyle("-fx-font: bold 20px 'serif' ");
         String biggerHeading = "Bigger heading";
         Link.setText(h2+biggerHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
@@ -91,7 +116,8 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH3Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: bold 16px 'serif' ");
+        Link.getStyleClass().add("hyperlinkH3");
+        Link.getStyleClass().add("hyperlinkHnC");
         String bigHeading = "Big heading";
         Link.setText(h3 + bigHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
@@ -106,7 +132,8 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH4Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: bold 14px 'serif' ");
+        Link.getStyleClass().add("hyperlinkH4");
+        Link.getStyleClass().add("hyperlinkHnC");
         String normalHeading = "Normal heading";
         Link.setText(h4 + normalHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
@@ -121,7 +148,8 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH5Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: bold 12px 'serif' ");
+        Link.getStyleClass().add("hyperlinkH5");
+        Link.getStyleClass().add("hyperlinkHnC");
         String smallHeading = "Small heading";
         Link.setText(h5 + smallHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
@@ -136,7 +164,8 @@ public class Control extends Application implements EventHandler {
     
     public Hyperlink createNewH6Link(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
-        Link.setStyle("-fx-font: 12px 'serif' ");
+        Link.getStyleClass().add("hyperlinkH6");
+        Link.getStyleClass().add("hyperlinkHnC");
         String smallestHeading = "Smallest heading";
         Link.setText(h6 + smallestHeading);
         Link.setOnAction(new EventHandler<ActionEvent>() {
@@ -152,6 +181,7 @@ public class Control extends Application implements EventHandler {
     public Hyperlink createNewStrongLink(final TextArea textArea) {
         Hyperlink Link = new Hyperlink();
         Link.setText("strong");
+        Link.getStyleClass().add("hyperlinkHnC");
         Link.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {

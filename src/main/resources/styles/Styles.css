@@ -1,3 +1,60 @@
-.button {
-    -fx-font-weight: bold;
+.button{
+    -fx-text-fill: #4287f5;
+    -fx-border-radius: 4;
+}
+
+.hyperlinkHnC:visited {
+    -fx-text-fill: #33adcc;
+    -fx-underline: false;
+    
+}
+
+.hyperlinkHnC,
+.hyperlinkHnC:visited:armed,
+.hyperlinkHnC:hover:armed {
+    -fx-text-fill:#33adcc; -fx-accent:#33adcc;
+}
+.hyperlinkHnC:hover,
+.hyperlinkHnC:visited {
+    -fx-text-fill: #33adcc; -fx-text-background-color:#33adcc;
+}
+
+.hyperlinkHnC:hover{
+    -fx-underline: true;
+    
+}
+
+.hyperlinkH1{
+   -fx-font: bold 24px 'serif';
+   -fx-font-color: #f54260;
+   -fx-alignment: baseline-left;
+}
+
+.hyperlinkH2{
+    -fx-font: bold 20px 'serif';
+    -fx-font-color: #42f560;   
+}
+
+.hyperlinkH3{
+    -fx-font: bold 16px 'serif';
+    -fx-font-color: #f54260;
+    
+}
+
+.hyperlinkH4{
+    -fx-font: bold 14px 'serif';
+    -fx-font-color: #f54260;
+    
+}
+
+.hyperlinkH5{
+    -fx-font: bold 12px 'serif';
+    -fx-font-color: #f54260;
+    
+}
+
+.hyperlinkH6{
+    -fx-font: 12px 'serif';
+    -fx-font-color: #f54260;
+    
 }
