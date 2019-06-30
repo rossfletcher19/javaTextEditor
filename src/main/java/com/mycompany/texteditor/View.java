@@ -5,7 +5,6 @@
  */
 package com.mycompany.texteditor;
 
-import java.io.File;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -36,6 +35,8 @@ import javafx.stage.Stage;
 public class View {
     TextArea textArea = new TextArea();
     Control control = new Control();
+    HeadingsLinks headingsLinks = new HeadingsLinks();
+    EffectsLinks effectsLinks = new EffectsLinks();
     
     
     public HBox addHBox() {
@@ -53,12 +54,12 @@ public class View {
         vbox.setSpacing(0);              // Gap between nodes
         
 //        vbox.getChildren().add(control.createNewH1Button(textArea));
-        vbox.getChildren().add(control.createNewH1Link(textArea));
-        vbox.getChildren().add(control.createNewH2Link(textArea));
-        vbox.getChildren().add(control.createNewH3Link(textArea));
-        vbox.getChildren().add(control.createNewH4Link(textArea));
-        vbox.getChildren().add(control.createNewH5Link(textArea));
-        vbox.getChildren().add(control.createNewH6Link(textArea));
+        vbox.getChildren().add(headingsLinks.createNewH1Link(textArea));
+        vbox.getChildren().add(headingsLinks.createNewH2Link(textArea));
+        vbox.getChildren().add(headingsLinks.createNewH3Link(textArea));
+        vbox.getChildren().add(headingsLinks.createNewH4Link(textArea));
+        vbox.getChildren().add(headingsLinks.createNewH5Link(textArea));
+        vbox.getChildren().add(headingsLinks.createNewH6Link(textArea));
        
         
         return vbox;
@@ -69,7 +70,17 @@ public class View {
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10)); // Set all sides to 10
         vbox.setSpacing(0);              // Gap between nodes
-        vbox.getChildren().add(control.createNewStrongLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewStrongLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewEmphasisLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewCitationLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewDeletedLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewInsertedLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewSuperscriptLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewSubscriptLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewMonospaceLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewBlockQuoteLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewQuoteLink(textArea));
+        vbox.getChildren().add(effectsLinks.createNewColorLink(textArea));
         
         return vbox;
     }
@@ -112,7 +123,6 @@ public class View {
         grid.add(category, 0, 0);
         
         final Accordion headingsAccordion = new Accordion ();
-       
         final TitledPane headingsTitlePane = new TitledPane();
         headingsTitlePane.setText("Headings");
         headingsTitlePane.setContent(addHeadingsVBox());
